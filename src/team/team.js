@@ -1,22 +1,16 @@
-export default class Team {
-  constructor() {
-    this.members = new Set();
+add(character) {
+    if (!this.members.has(character)) {
+      this.members.add(character);
+
+    } else {
+      throw new Error('Данный персонаж уже был добавлен в команду');
+    }
   }
 
-  add(characer) {
-    this.members.forEach((item) => {
-      if (JSON.stringify(item) === JSON.stringify(characer)) {
-        throw new Error('The character has already been added');
-      }
-    });
-    this.members.add(characer);
-  }
-
-  addAll(...arr) {
-    arr.forEach((item) => {
-      this.members.add(item);
-    });
-    return this;
+  addAll(...characters) {
+    for (let character of characters) {
+      this.members.add(character);
+    }
   }
 
   toArray() {
